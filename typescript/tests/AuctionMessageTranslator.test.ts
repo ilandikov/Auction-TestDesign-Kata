@@ -9,6 +9,10 @@ class MockAuctionEventListener implements AuctionEventListener {
         this.expectedCall = call;
     }
 
+    auctionClosed(): void {
+        this.actualCall = 'AuctionClosed';
+    }
+
     checkExpectations() {
         expect(this.expectedCall).toEqual(this.actualCall);
     }

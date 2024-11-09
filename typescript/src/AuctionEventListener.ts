@@ -1,3 +1,3 @@
 export interface AuctionEventListener {
-    // TODO: add methods here
+    auctionClosed(): void;
 }
