@@ -10,6 +10,12 @@ export class AuctionMessageTranslator {
     public processMessage(message: string) {
         if (message.includes('CLOSE')) {
             this.listener.auctionClosed();
+
+            const data = this.getDataFromMessage(message);
+            const reservePrice = parseInt(data['ReservePrice']);
+            if (reservePrice) {
+                this.listener.setReservePrice(reservePrice);
+            }
         } else if (message.includes('PRICE')) {
             const data = this.getDataFromMessage(message);
 

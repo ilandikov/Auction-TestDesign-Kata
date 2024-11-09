@@ -13,6 +13,10 @@ class MockAuctionEventListener implements AuctionEventListener {
     priceUpdate(currentPrice: number): void {
         this.priceUpdater(currentPrice);
     }
+
+    setReservePrice(number: number): void {
+        this.reservePriceSetter(number);
+    }
 }
 
 describe('AuctionMessageTranslator tests', () => {
