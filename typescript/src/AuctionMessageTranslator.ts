@@ -11,14 +11,7 @@ export class AuctionMessageTranslator {
         if (message.includes('CLOSE')) {
             this.listener.auctionClosed();
         } else if (message.includes('PRICE')) {
-            const data: { [key: string]: string } = {};
-            message
-                .split(';')
-                .filter((element) => element.includes(':'))
-                .forEach((element) => {
-                    const pair = element.split(':');
-                    data[pair[0].trim()] = pair[1].trim();
-                });
+            const data = this.getDataFromMessage(message);
 
             const currentPrice = parseInt(data['CurrentPrice']);
             const increment = parseInt(data['Increment']);
@@ -28,5 +21,17 @@ export class AuctionMessageTranslator {
         } else {
             // bug: should notify listener
         }
+    }
+
+    private getDataFromMessage(message: string) {
+        const data: { [key: string]: string } = {};
+        message
+            .split(';')
+            .filter((element) => element.includes(':'))
+            .forEach((element) => {
+                const pair = element.split(':');
+                data[pair[0].trim()] = pair[1].trim();
+            });
+        return data;
     }
 }
