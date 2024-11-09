@@ -24,7 +24,7 @@ export class AuctionMessageTranslator {
             const increment = parseInt(data['Increment']);
             const bidder = data['Bidder'];
 
-            // bug: should notify listener
+            this.listener.priceUpdate(currentPrice);
         } else {
             // bug: should notify listener
         }

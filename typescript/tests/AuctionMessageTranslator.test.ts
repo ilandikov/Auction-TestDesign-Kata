@@ -5,7 +5,6 @@ class MockAuctionEventListener implements AuctionEventListener {
     private expectedCall: string = '';
     private actualCall: string = '';
     private expectedArgument: any;
-
     expectCall(call: string) {
         this.expectedCall = call;
     }
@@ -21,6 +20,11 @@ class MockAuctionEventListener implements AuctionEventListener {
     expectCallWithArg(call: string, argument: any) {
         this.expectedCall = call;
         this.expectedArgument = argument;
+    }
+
+    priceUpdate(currentPrice: number): void {
+        this.actualCall = 'PriceUpdate';
+        expect(currentPrice).toEqual(this.expectedArgument);
     }
 }
 
